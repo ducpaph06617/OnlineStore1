@@ -56,7 +56,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
          String trangthai = deltails.get(position).getTrangThaiB();
          if (trangthai.equalsIgnoreCase("Đã Xác Nhận")) {
              holder.txtTrangthai.setTextColor(Color.parseColor("#00c853"));
-             holder.btndeletecart.setEnabled(false);
+             holder.btndeletecart.setVisibility(View.INVISIBLE);
+
          }
         if (trangthai.equalsIgnoreCase("Đã Hủy")) {
             holder.txtTrangthai.setTextColor(Color.parseColor("#fa0e0e"));
