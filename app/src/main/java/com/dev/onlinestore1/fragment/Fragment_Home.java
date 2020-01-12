@@ -687,15 +687,7 @@ public class Fragment_Home extends BaseFragment {
             @Override
             public void onClick(View v) {
                 if (!giohangArray.isEmpty()) {
-                    for (int i = 0; i < giohangArray.size(); i++) {
-                        if (product.getIdsp().equalsIgnoreCase(giohangArray.get(i).getIdsp())) {
-                            check = true;
-                            Toast.makeText(getActivity(), "Sản phẩm đã tồn tại trong giỏ hàng", Toast.LENGTH_SHORT).show();
-                            break;
-                        } else {
                             check = false;
-                        }
-                    }
                 }
                 if (check == false) {
                     final Dialog dialog1 = new Dialog(getActivity(), R.style.PauseDialog2);
@@ -730,7 +722,8 @@ public class Fragment_Home extends BaseFragment {
                                     Toast.makeText(getActivity(), "Vui lòng đăng nhập", Toast.LENGTH_SHORT).show();
                                 } else if (id.equals(idUB)) {
                                     Toast.makeText(getActivity(), "Không thể mua sản phẩm của mình", Toast.LENGTH_SHORT).show();
-                                } else {
+                                }
+                                else {
 //                           if (!giohangArray.isEmpty()) {
 //                               for (int i = 0; i < giohangArray.size(); i++) {
 //                                   if (product.getIdsp().equalsIgnoreCase(giohangArray.get(i).getIdsp())) {
@@ -743,6 +736,7 @@ public class Fragment_Home extends BaseFragment {
 //                               }
 //                           }
 //                           if (check == false) {
+
                                     giohangArray.clear();
                                     User.cartsp cartsp = new User.cartsp();
                                     cartsp.setIdsp(product.getIdsp());

@@ -129,7 +129,7 @@ public class Fragment_Cart extends BaseFragment {
             mDatabase.child("id").child("User").child(id).child("cart").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                    User.cartsp cartsp = dataSnapshot.getValue(User.cartsp.class);
+                    final User.cartsp cartsp = dataSnapshot.getValue(User.cartsp.class);
                     if (dataSnapshot.getKey() != null) {
                         Log.e("CHECK", dataSnapshot.getKey());
                         idspham.add(0,dataSnapshot.getKey());
@@ -143,6 +143,7 @@ public class Fragment_Cart extends BaseFragment {
                             User.Product product = dataSnapshot.getValue(User.Product.class);
                             products.add(0, product);
                             cartAdapter.notifyDataSetChanged();
+                            
                         }
 
                         @Override
@@ -166,6 +167,7 @@ public class Fragment_Cart extends BaseFragment {
                         }
                     });
                     Log.e("KEY", giohangArray.size() + "");
+
                 }
 
                 @Override
@@ -246,6 +248,10 @@ public class Fragment_Cart extends BaseFragment {
                         loading.setVisibility(View.INVISIBLE);
                         scrollView.setAlpha(1f);
                         getcart();
+
+//                       giohangArray.remove(i);
+//                        Log.e("sizeB", "onSuccess: "+bills.size() );
+
                         cartAdapter.notifyDataSetChanged();
                         if (size==1){
                             startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -258,6 +264,8 @@ public class Fragment_Cart extends BaseFragment {
                     public void onSuccess(Void aVoid) {
                         loading.setVisibility(View.INVISIBLE);
                         scrollView.setAlpha(1f);
+
+//                        giohangArray.remove(i);
                         getcart();
                         if (size==1){
 
@@ -345,13 +353,13 @@ public class Fragment_Cart extends BaseFragment {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             deltail.setTrangThaiB("Đã Hủy");
-                            mDatabase.child("id").child("User").child(id).child("bill").child(bills.get(0)).setValue(deltail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            mDatabase.child("id").child("User").child(id).child("bill").child(deltail.getIdbilll()).setValue(deltail).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     //Toast.makeText(getActivity(), "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                            mDatabase.child("id").child("User").child(idShop).child("bill").child(bills.get(0)).setValue(deltail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            mDatabase.child("id").child("User").child(idShop).child("bill").child(deltail.getIdbilll()).setValue(deltail).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
 
@@ -392,13 +400,14 @@ public class Fragment_Cart extends BaseFragment {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             deltail.setTrangThaiB("Đã Nhận Hàng");
-                            mDatabase.child("id").child("User").child(id).child("bill").child(bills.get(0)).setValue(deltail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            mDatabase.child("id").child("User").child(id).child("bill").child(deltail.getIdbilll()).setValue(deltail).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     //Toast.makeText(getActivity(), "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
+
                                 }
                             });
-                            mDatabase.child("id").child("User").child(idShop).child("bill").child(bills.get(0)).setValue(deltail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            mDatabase.child("id").child("User").child(idShop).child("bill").child(deltail.getIdbilll()).setValue(deltail).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
 
