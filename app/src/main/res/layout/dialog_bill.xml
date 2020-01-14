@@ -300,7 +300,7 @@
 
                                 <TextView
                                     android:id="@+id/txttrangthai"
-                                    android:layout_width="0dp"
+                                    android:layout_width="609dp"
                                     android:layout_height="50dp"
                                     android:layout_weight="2"
                                     android:gravity="center"

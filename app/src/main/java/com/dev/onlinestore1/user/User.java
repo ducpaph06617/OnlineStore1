@@ -83,12 +83,12 @@ public class User {
         public String idsp;
         public String uri;
         public String loaisp;
-        public String soluong;
+
         public String thoigian;
         public Product() {
         }
 
-        public Product(String idU,String nameshop, String nameproduct, String priceproduct, String colorproduct, String lovestatus, String status, String describe, String idsp, String uri, String loaisp, String soluong, String thoigian) {
+        public Product(String idU,String nameshop, String nameproduct, String priceproduct, String colorproduct, String lovestatus, String status, String describe, String idsp, String uri, String loaisp,  String thoigian) {
             this.idU = idU;
             this.nameshop = nameshop;
             this.nameproduct = nameproduct;
@@ -100,7 +100,7 @@ public class User {
             this.idsp = idsp;
             this.uri = uri;
             this.loaisp = loaisp;
-            this.soluong = soluong;
+
             this.thoigian = thoigian;
         }
 
@@ -192,13 +192,6 @@ public class User {
             this.loaisp = loaisp;
         }
 
-        public String getSoluong() {
-            return soluong;
-        }
-
-        public void setSoluong(String soluong) {
-            this.soluong = soluong;
-        }
 
         public String getThoigian() {
             return thoigian;

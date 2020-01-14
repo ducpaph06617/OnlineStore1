@@ -19,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,13 +28,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.dev.onlinestore1.AddProductActivity;
-import com.dev.onlinestore1.HomeActivity;
 import com.dev.onlinestore1.R;
 import com.dev.onlinestore1.adapter.GridAdapter;
 import com.dev.onlinestore1.adapter.ImageAdapter;
 import com.dev.onlinestore1.adapter.ProductAdapter;
-import com.dev.onlinestore1.notification.MyResponse;
 import com.dev.onlinestore1.user.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,8 +41,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
 
@@ -54,10 +48,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Fragment_Home extends BaseFragment {
     private RecyclerView recyclerviewProductBoy;
@@ -703,11 +693,9 @@ public class Fragment_Home extends BaseFragment {
 
                             String idUB = productBuy.getIdU();
                             String soluong = String.valueOf(edtSluong.getText());
-                            String soluong2 = String.valueOf(product.getSoluong());
                             String diachi = edtDiachi.getText().toString().trim();
-                            if (Integer.parseInt(soluong) > Integer.parseInt(soluong2)) {
-                                edtSluong.setError("Số lượng không đủ!!!");
-                            } else if (Integer.parseInt(soluong) < 1) {
+
+                            if (Integer.parseInt(soluong) < 1) {
                                 edtSluong.setError("Số lượng không thể nhỏ hơn 1!!!");
                             } else if (diachi.equals("")) {
                                 edtDiachi.setError("Nhập địa chỉ!");
@@ -875,7 +863,7 @@ public class Fragment_Home extends BaseFragment {
         txttrangthai.setText(product.getStatus());
         txttinhtrang.setText(product.getLovestatus());
         txtmota.setText(product.getDescribe());
-        txtsoluong.setText(product.getSoluong());
+
 
 
 

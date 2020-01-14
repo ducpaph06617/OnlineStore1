@@ -93,7 +93,6 @@ public class Fragment_Cart extends BaseFragment {
     private EditText edtMota;
     private Button btnDangsp;
     private ArrayList<String> uri = new ArrayList<>();
-    private ArrayList<String> productss = new ArrayList<>();
     private int i = 0;
 
 
@@ -143,7 +142,7 @@ public class Fragment_Cart extends BaseFragment {
                             User.Product product = dataSnapshot.getValue(User.Product.class);
                             products.add(0, product);
                             cartAdapter.notifyDataSetChanged();
-                            
+
                         }
 
                         @Override

@@ -27,10 +27,8 @@ import androidx.annotation.RequiresApi;
 
 
 import com.dev.onlinestore1.AccountInformationActivity;
-import com.dev.onlinestore1.AddProductActivity;
 import com.dev.onlinestore1.HomeActivity;
 import com.dev.onlinestore1.LoginActivity;
-import com.dev.onlinestore1.ProductManagementActivity;
 import com.dev.onlinestore1.R;
 import com.dev.onlinestore1.SupportActivity;
 import com.dev.onlinestore1.user.User;
