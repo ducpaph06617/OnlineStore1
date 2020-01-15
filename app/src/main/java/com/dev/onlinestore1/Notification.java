@@ -8,7 +8,7 @@ import android.os.Build;
 public class Notification extends Application {
     public static final String HUY_DON_1 ="huydon1";
     public static final String XAC_NHAN_DON_1 ="xacnhandon1";
-
+//asdasd
 
     @Override
     public void onCreate() {
