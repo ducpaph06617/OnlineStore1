@@ -237,7 +237,7 @@ public class Fragment_Menu extends BaseFragment {
                 btnLogin.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        LoginManager.getInstance().logOut();
+
                         FirebaseAuth.getInstance().signOut();
                         txtUsername.setText("");
                         imgUser.setImageResource(R.drawable.ic_users);
