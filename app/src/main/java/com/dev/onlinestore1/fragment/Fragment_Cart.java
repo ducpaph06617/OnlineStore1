@@ -2,6 +2,7 @@ package com.dev.onlinestore1.fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -25,6 +26,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,6 +51,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import pl.droidsonroids.gif.GifImageView;
+
+import static com.dev.onlinestore1.Notification.HUY_DON_1;
+import static com.dev.onlinestore1.Notification.XAC_NHAN_DON_1;
 
 public class Fragment_Cart extends BaseFragment {
 
@@ -95,7 +101,7 @@ public class Fragment_Cart extends BaseFragment {
     private ArrayList<String> uri = new ArrayList<>();
     private int i = 0;
 
-
+    private NotificationManagerCompat notificationManager;
 
     @Nullable
     @Override
@@ -115,6 +121,7 @@ public class Fragment_Cart extends BaseFragment {
         recyclerviewcart.setAdapter(cartAdapter);
         getcart();
 
+        notificationManager = NotificationManagerCompat.from(getActivity());
         return view;
     }
 
@@ -351,6 +358,17 @@ public class Fragment_Cart extends BaseFragment {
                     builder.setNegativeButton("Có", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            String title ="Thong Bao";
+                            String messageHUy ="Khach Hang Da Huy Don Hang";
+                            Notification notification = new NotificationCompat.Builder(getActivity(),HUY_DON_1)
+                                    .setSmallIcon(R.mipmap.ic_launcher)
+                                    .setContentTitle(title)
+                                    .setContentText(messageHUy)
+                                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                    .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                                    .build();
+
+                            notificationManager.notify(1,notification);
                             deltail.setTrangThaiB("Đã Hủy");
                             mDatabase.child("id").child("User").child(id).child("bill").child(deltail.getIdbilll()).setValue(deltail).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -389,6 +407,14 @@ public class Fragment_Cart extends BaseFragment {
                     builder.setMessage("Bạn đã nhận được sản phẩm?");
                     builder.setCancelable(false);
                     final String idShop = deltail.getIdShop();
+                    // notification
+
+
+
+
+
+
+
                     builder.setPositiveButton("hủy", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -398,6 +424,18 @@ public class Fragment_Cart extends BaseFragment {
                     builder.setNegativeButton("Đã nhận", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            String title ="Thong Bao";
+                            String messageHUy ="Khac Hang Da Nhan Hang";
+                            Notification notification = new NotificationCompat.Builder(getActivity(),XAC_NHAN_DON_1)
+                                    .setSmallIcon(R.mipmap.ic_launcher)
+                                    .setContentTitle(title)
+                                    .setContentText(messageHUy)
+                                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                    .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                                    .build();
+
+                            notificationManager.notify(1,notification);
+
                             deltail.setTrangThaiB("Đã Nhận Hàng");
                             mDatabase.child("id").child("User").child(id).child("bill").child(deltail.getIdbilll()).setValue(deltail).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
