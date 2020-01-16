@@ -1,6 +1,7 @@
 package com.dev.onlinestore1.fragment;
 
 import android.app.Dialog;
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.Time;
@@ -24,6 +25,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,6 +45,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import static com.dev.onlinestore1.Notification.HUY_DON_1;
+import static com.dev.onlinestore1.Notification.XAC_NHAN_DON_1;
 
 
 import java.util.ArrayList;
@@ -150,11 +155,12 @@ public class Fragment_Home extends BaseFragment {
     //    CommentAdapter commentAdapter;
 
 
+    private NotificationManagerCompat notificationManager;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
-
+        notificationManager = NotificationManagerCompat.from(getActivity());
         progressBar = view.findViewById(R.id.progress);
         progressBar1 = view.findViewById(R.id.progress1);
         progressBar2 = view.findViewById(R.id.progress2);
@@ -694,7 +700,16 @@ public class Fragment_Home extends BaseFragment {
                             String idUB = productBuy.getIdU();
                             String soluong = String.valueOf(edtSluong.getText());
                             String diachi = edtDiachi.getText().toString().trim();
-
+                            String title ="Thông Báo!!!";
+                            String messageHUy ="Bạn có đơn hàng mới";
+                            Notification notification = new NotificationCompat.Builder(getActivity(),XAC_NHAN_DON_1)
+                                    .setSmallIcon(R.drawable.ic_notification)
+                                    .setContentTitle(title)
+                                    .setContentText(messageHUy)
+                                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                    .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                                    .build();
+                            notificationManager.notify(1,notification);
                             if (Integer.parseInt(soluong) < 1) {
                                 edtSluong.setError("Số lượng không thể nhỏ hơn 1!!!");
                             } else if (diachi.equals("")) {
@@ -727,10 +742,12 @@ public class Fragment_Home extends BaseFragment {
 
                                     giohangArray.clear();
                                     User.cartsp cartsp = new User.cartsp();
+                                    String idCart = product.getIdsp();
+                                    cartsp.setIdCart(idCart);
                                     cartsp.setIdsp(product.getIdsp());
                                     cartsp.setIdShop(product.getIdU());
                                     cartsp.setSoluong(String.valueOf(edtSluong.getText()));
-                                    mDatabase.child("id").child("User").child(id).child("cart").child(calendar1.getTimeInMillis() + "").setValue(cartsp).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    mDatabase.child("id").child("User").child(id).child("cart").child(idCart).setValue(cartsp).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
 
@@ -742,14 +759,18 @@ public class Fragment_Home extends BaseFragment {
 
                                         }
                                     });
-                                    mDatabase.child("id").child("User").child(product.getIdU()).child("cart").child(calendar1.getTimeInMillis() + "").setValue(cartsp).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                                    mDatabase.child("id").child("User").child(product.getIdU()).child("cart").child(idCart).setValue(cartsp).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
 
+
                                             Toast.makeText(getActivity(), "Đã đặt hàng", Toast.LENGTH_SHORT).show();
+
                                             getcart();
                                             dialog.dismiss();
                                             dialog1.dismiss();
+
 
 
                                         }

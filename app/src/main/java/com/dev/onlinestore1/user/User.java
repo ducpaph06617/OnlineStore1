@@ -243,14 +243,23 @@ public class User {
         public String idsp;
         public String soluong;
         public String idShop;
-
+         public String idCart;
          public cartsp() {
          }
 
-         public cartsp(String idsp, String soluong,String idShop) {
+         public cartsp(String idsp, String soluong,String idShop,String idCart) {
              this.idsp = idsp;
              this.soluong = soluong;
              this.idShop = idShop;
+             this.idCart = idCart;
+         }
+
+         public String getIdCart() {
+             return idCart;
+         }
+
+         public void setIdCart(String idCart) {
+             this.idCart = idCart;
          }
 
          public String getIdShop() {
@@ -442,4 +451,42 @@ public class User {
      }
 
 
+    public static class Notifi {
+        public String tenSP;
+        public String trangthai;
+        public String tenNotifi;
+
+        public Notifi(String tenSP, String trangthai, String tenNotifi) {
+            this.tenSP = tenSP;
+            this.trangthai = trangthai;
+            this.tenNotifi = tenNotifi;
+        }
+        public Notifi(){
+
+        }
+
+        public String getTenSP() {
+            return tenSP;
+        }
+
+        public void setTenSP(String tenSP) {
+            this.tenSP = tenSP;
+        }
+
+        public String getTrangthai() {
+            return trangthai;
+        }
+
+        public void setTrangthai(String trangthai) {
+            this.trangthai = trangthai;
+        }
+
+        public String getTenNotifi() {
+            return tenNotifi;
+        }
+
+        public void setTenNotifi(String tenNotifi) {
+            this.tenNotifi = tenNotifi;
+        }
+    }
 }
